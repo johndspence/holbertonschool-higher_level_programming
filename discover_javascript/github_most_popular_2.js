@@ -34,3 +34,8 @@ req.end();
 req.on('error', function(e) {
   console.error(e);
 });
+
+var longString = function(jsonString){                   
+    console.log(typeof jsonString);
+    console.log(jsonString);
+}
