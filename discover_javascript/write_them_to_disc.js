@@ -9,15 +9,15 @@ var options = {
     }}
 
 var callback1 = function(res) {
-   streamToString(res, printToConsole  );
+   streamToString(res, write );
  } 
 
 var req = https.request(options,callback1);
 
-var printToConsole = function(x) {
-    console.log("string");  
-    console.log(x);
-}
+// var printToConsole = function(x) {
+//     console.log("string");  
+//     console.log(x);
+// }
 
 function streamToString(stream, cb) {
   const chunks = [];
@@ -27,6 +27,17 @@ function streamToString(stream, cb) {
   stream.on('end', () => {
     cb(chunks.join(''));
   });
+}
+
+var write = function(jsonString){
+var fs = require('fs');
+fs.writeFile("/tmp/44", jsonString, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+}); 
 }
 
 req.end();

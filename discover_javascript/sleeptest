@@ -1,0 +1,11 @@
+console.log("starting");
+
+var display = function(){
+  console.log("One more second...");
+
+function sleeping(param1, callback) {setInterval(display, param1); callback();
+}
+
+sleeping(10000,function()console.log("starting"))
+}
+
