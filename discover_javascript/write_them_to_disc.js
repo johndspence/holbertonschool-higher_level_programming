@@ -14,11 +14,6 @@ var callback1 = function(res) {
 
 var req = https.request(options,callback1);
 
-// var printToConsole = function(x) {
-//     console.log("string");  
-//     console.log(x);
-// }
-
 function streamToString(stream, cb) {
   const chunks = [];
   stream.on('data', (chunk) => {
@@ -38,6 +33,11 @@ fs.writeFile("/tmp/44", jsonString, function(err) {
 
     console.log("The file was saved!");
 }); 
+}
+
+var longString = function(jsonString){                   
+    console.log(typeof jsonString);
+    console.log(jsonString);
 }
 
 req.end();

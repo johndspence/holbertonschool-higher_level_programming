@@ -9,15 +9,10 @@ var options = {
     }}
 
 var callback1 = function(res) {
-   streamToString(res, printToConsole  );
+   streamToString(res, longString  );
  } 
 
 var req = https.request(options,callback1);
-
-var printToConsole = function(x) {
-    console.log("string");  
-    console.log(x);
-}
 
 function streamToString(stream, cb) {
   const chunks = [];
