@@ -1,8 +1,6 @@
 #!/usr/bin/ruby
 
 require "HTTPClient"
-require "net/http"
-require "uri"
 
 extheaders = {
   'User-Agent' => 'Holberton_School',
