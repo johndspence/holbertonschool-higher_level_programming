@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 require "HTTPClient"
 require "net/http"
 require "uri"
@@ -6,7 +8,6 @@ extheaders = {
   'User-Agent' => 'Holberton_School',
   'Authorization' => 'token 3e0df28fcee55ed9d9bfbfda999ac5428e1ab96c'
 }
-
 
 clnt = HTTPClient.new
 
