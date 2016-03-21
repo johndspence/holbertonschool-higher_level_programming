@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 require "HTTPClient"
 require "net/http"
 require "uri"
@@ -9,12 +11,6 @@ extheaders = {
 }
 
 clnt = HTTPClient.new
-
-# fname = "/tmp/44"
-# somefile = File.open(fname, "w")
-# somefile.puts clnt.get_content('https://api.github.com/search/repositories?q=language:ruby&sort=stars&order=desc')
-# somefile.close
-# somefile = File.read("/tmp/44")
 
 url = 'https://api.github.com/search/repositories?q=language:ruby&sort=stars&order=desc'
 uri = URI(url)
