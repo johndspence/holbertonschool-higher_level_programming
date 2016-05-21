@@ -1,3 +1,5 @@
+import json
+import os.path
 
 ''' Class '''
 class Person():
@@ -40,28 +42,15 @@ class Person():
 	'''Getters'''
 	def get_id(self):
 			return self.__id
-
 	def get_eyes_color(self):
 		return self.__eyes_color
-
 	def get_genre(self):
 		return self.__genre
-
 	def get_first_name(self):
 		return self.__first_name
 
 
-	def __str__(self):
-		return __str__(self)
-
-
-
-
 	'''Public Methods'''
-
-	def __str__(self):
-		return self.__first_name + " " + self.last_name
-
 	def is_male(self):
 		if self.__genre is "Male":
 			return "True"
@@ -74,3 +63,96 @@ class Person():
 				return today[2] - self.__date_of_birth[2]
 		else:
 			return today[2] - self.__date_of_birth[2] - 1
+
+	def __str__(self):
+		return self.__first_name + " " + self.last_name
+	def __lt__(self, other):
+		return self.age() < other.age()
+	def __le__(self, other):
+		return self.age() <= other.age()
+	def __eq__(self, other):
+		return self.age() == other.age()
+	def __ne__(self, other):
+		return self.age() >= other.age()
+	def __gt__(self, other):
+		return self.age() > other.age()
+
+	def json(self):
+		data = {
+		'id': self.__id,
+		'eyes_color': self.__eyes_color,
+		'genre': self.__genre,
+		'date_of_birth': self.__date_of_birth,
+		'first_name': self.__first_name,
+		'last_name': self.lastname,
+		}
+
+	def load_from_json(self, json):
+		if type(json) != dict:
+			raise Exception("json is not valid")
+			self.__id = json ['id']
+			self.__eyes_color = json['eyes_color']
+			self.__date_of_birth = json['date_of_birth']
+			self.__first_name = json['first_name']
+			self.__last_name = json['last_name']
+
+class Baby(Person):
+	''' functions can_run, need_help, is_young, can_vote return True or False
+		repeated for each subclass Baby, Teenager, Adult, Senior'''
+	def can_run(self):
+		return False
+	def need_help(self):
+		return True
+	def is_young(self):
+		return True
+	def can_vote(self):
+		return False
+
+class Teenager(Person):
+	''' functions can_run, need_help, is_young, can_vote return True or False
+		repeated for each subclass Baby, Teenager, Adult, Senior'''
+	def can_run(self):
+		return False
+	def need_help(self):
+		return False
+	def is_young(self):
+		return True
+	def can_vote(self):
+		return False
+
+class Adult(Person):
+	''' functions can_run, need_help, is_young, can_vote return True or False
+		repeated for each subclass Baby, Teenager, Adult, Senior'''
+	def can_run(self):
+		return True
+	def need_help(self):
+		return False
+	def is_young(self):
+		return False
+	def can_vote(self):
+		return True
+
+class Senior(Person):
+	''' functions can_run, need_help, is_young, can_vote return True or False
+		repeated for each subclass Baby, Teenager, Adult, Senior'''
+	def can_run(self):
+		return False
+	def need_help(self):
+		return True
+	def is_young(self):
+		return False
+	def can_vote(self):
+		return True
+
+
+def save_to_file(list, filename):
+	return "save to file"
+
+def load_from_file(filename):
+		if type(filename) != str or os.path.isfile(filename) != True:
+			raise Exception("filename is not valid or doesn't exist")
+		with open(filename) as my_fam:
+			data = json.load(my_fam)
+		my_fam.close()
+
+		array = []

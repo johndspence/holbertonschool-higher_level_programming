@@ -21,7 +21,7 @@ class Circle():
 		self.__color = color
 
 	def area(self):
-		return (3.14 * (pow(self.__radius, 2)))
+		return (3.14159265359 * (pow(self.__radius, 2)))
 
 	''' Getter '''
 	def get_radius(self, radius):
