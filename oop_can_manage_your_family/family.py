@@ -155,4 +155,5 @@ def load_from_file(filename):
 			data = json.load(my_fam)
 		my_fam.close()
 
+		data =
 		array = []
