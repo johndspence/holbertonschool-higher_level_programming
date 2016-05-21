@@ -90,11 +90,11 @@ class Person():
 	def load_from_json(self, json):
 		if type(json) != dict:
 			raise Exception("json is not valid")
-			self.__id = json ['id']
-			self.__eyes_color = json['eyes_color']
-			self.__date_of_birth = json['date_of_birth']
-			self.__first_name = json['first_name']
-			self.__last_name = json['last_name']
+		self.__id = json['id']
+		self.__eyes_color = json['eyes_color']
+		self.__date_of_birth = json['date_of_birth']
+		self.__first_name = json['first_name']
+		self.__last_name = json['last_name']
 
 class Baby(Person):
 	''' functions can_run, need_help, is_young, can_vote return True or False
@@ -144,16 +144,17 @@ class Senior(Person):
 	def can_vote(self):
 		return True
 
-
-def save_to_file(list, filename):
-	return "save to file"
+def save_to_file(list):
+	print "save to file was called"
 
 def load_from_file(filename):
-		if type(filename) != str or os.path.isfile(filename) != True:
-			raise Exception("filename is not valid or doesn't exist")
-		with open(filename) as my_fam:
-			data = json.load(my_fam)
-		my_fam.close()
+	if type(filename) != str or os.path.isfile(filename) != True:
+		raise Exception("filename is not valid or doesn't exist")
+	data =open(json.load(filename))
 
-		data =
-		array = []
+
+	json['id'] = self.__id
+	json['eyes_color'] = self.__eyes_color
+	json['date_of_birth'] = self.__date_of_birth
+	json['first_name'] = self.__first_name
+	json['last_name'] = self.__last_name
