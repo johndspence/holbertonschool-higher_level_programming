@@ -84,18 +84,32 @@ class Person():
 		'genre': self.__genre,
 		'date_of_birth': self.__date_of_birth,
 		'first_name': self.__first_name,
-		'last_name': self.lastname,
+		'kind': self.__class__.__name__
 		}
+
+		if hasattr(self, 'last_name'):
+			data['last_name'] = self.last_name
+		else:
+			data['last_name'] = "unknown"
+
+		return data
 
 	def load_from_json(self, json):
 		if type(json) != dict:
 			raise Exception("json is not valid")
-		self.__id = json['id']
-		self.__eyes_color = json['eyes_color']
-		self.__date_of_birth = json['date_of_birth']
-		self.__first_name = json['first_name']
-		self.__last_name = json['last_name']
+		for i in json:
+			if i == "id":
+				self.__id = json[i]
+			if i == "first_name":
+				self.__eyes_color = json[i]
+			if i == "date_of_birth":
+				self.__date_of_birth = json[i]
+			if i == "first_name":
+				self.__first_name = json[i]
+			if i == "last_name":
+				self.__last_name = json[i]
 
+'''subclasses'''
 class Baby(Person):
 	''' functions can_run, need_help, is_young, can_vote return True or False
 		repeated for each subclass Baby, Teenager, Adult, Senior'''
@@ -109,8 +123,6 @@ class Baby(Person):
 		return False
 
 class Teenager(Person):
-	''' functions can_run, need_help, is_young, can_vote return True or False
-		repeated for each subclass Baby, Teenager, Adult, Senior'''
 	def can_run(self):
 		return False
 	def need_help(self):
@@ -121,8 +133,6 @@ class Teenager(Person):
 		return False
 
 class Adult(Person):
-	''' functions can_run, need_help, is_young, can_vote return True or False
-		repeated for each subclass Baby, Teenager, Adult, Senior'''
 	def can_run(self):
 		return True
 	def need_help(self):
@@ -133,8 +143,6 @@ class Adult(Person):
 		return True
 
 class Senior(Person):
-	''' functions can_run, need_help, is_young, can_vote return True or False
-		repeated for each subclass Baby, Teenager, Adult, Senior'''
 	def can_run(self):
 		return False
 	def need_help(self):
@@ -144,17 +152,34 @@ class Senior(Person):
 	def can_vote(self):
 		return True
 
-def save_to_file(list):
-	print "save to file was called"
+'''Methods outside class'''
+def save_to_file(list, filename):
+	for i in range(0, len(list)):
+		if type(list[i]) != dict:
+			kind = type(list[i])
+			list[i] = list[i].json()
+			list[i]['kind'] = kind.__name__
+	target = open(filename, 'w')
+	list_dump = json.dumps(list)
+	target.write(list_dump)
+	target.close()
 
 def load_from_file(filename):
 	if type(filename) != str or os.path.isfile(filename) != True:
 		raise Exception("filename is not valid or doesn't exist")
-	data =open(json.load(filename))
-
-
-	json['id'] = self.__id
-	json['eyes_color'] = self.__eyes_color
-	json['date_of_birth'] = self.__date_of_birth
-	json['first_name'] = self.__first_name
-	json['last_name'] = self.__last_name
+	with open(filename) as my_fam:
+		data = json.load(my_fam)
+	list_persons = []
+	for d in data:
+		if d['kind'] == "Adult":
+			p = Adult(0, 'bill',[12,12,12], "Male", "Blue")
+		if d['kind'] == "Baby":
+			p = Adult(0, 'bob',[12,12,12], "Male", "Blue")
+		if d['kind'] == "Senior":
+			p = Senior(0, 'brad',[12,12,12], "Male", "Blue")
+		if d['kind'] == "Teenager":
+			p = Teenager(0, 'buck',[12,12,12], "Male", "Blue")
+		else:
+			p = Person(0, 'bud',[12,12,12], "Male", "Blue")
+		p.load_from_json(d)
+	return list_persons
