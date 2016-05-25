@@ -1,3 +1,6 @@
+var str = "Hello, playground"
+
+
 class Person{
     var first_name: String
     var last_name: String
@@ -14,35 +17,14 @@ class Person{
     }
 }
 
-var p = Person(first_name: "John", last_name: "Fring", age: 30)
-
-print("name: \(p.first_name)")
-print("fullName: \(p.fullName())")
-
-//enumeration
-enum Subject{
-    case Math
-    case English
-    case French
-    case History
-}
-
-//protocol
-protocol Classify {
-    func isStudent() -> Bool
-}
-
 //class mentor
 class Mentor: Person, Classify{
-
-    var subject: Subject
-
+    let subject: Subject
 
     init(first_name: String, last_name: String, age: Int, subject: Subject = Subject.Math) {
         self.subject = subject
         super.init(first_name: first_name, last_name: last_name, age: age)
     }
-
 
     func isStudent() -> Bool {
         return false
@@ -62,8 +44,48 @@ class Mentor: Person, Classify{
     }
 }
 
+//class student
 class Student: Person, Classify{
     func isStudent() -> Bool {
         return true
     }
+}
+
+//class school
+class School {
+    var name: String
+    init(name: String){
+        self.name = name
+    }
+
+    var list_persons = [Person!]()
+
+    func addStudent(p: Person) -> Bool{
+        if p is Student{
+            list_persons.append(p)
+            return true
+            } else {
+        return false
+        }
+    }
+
+    func addMentor(p: Person) -> Bool{
+        if p is Mentor{
+            list_persons.append(p)
+            return true
+        } else {
+        return false
+        }
+    }
+
+}
+
+//enumeration
+enum Subject {
+    case Math, English, French, History
+}
+
+//protocol
+protocol Classify {
+    func isStudent() -> Bool
 }
