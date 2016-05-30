@@ -1,5 +1,5 @@
 #!/usr/bin/python
-class Model
+class Model:
 
     # Constructor
     def __init__(self, n = 0):
