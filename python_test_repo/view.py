@@ -3,7 +3,7 @@
 import Tkinter as tk
 
 
-class View(tk.TopLevel):
+class View(tk.Toplevel):
 
     # Constructor
     def __init__(self, master):
