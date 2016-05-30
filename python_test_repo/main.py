@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
 # Main
+
+import Tkinter as tk
 from view import View
 from model import Model
 from controller import Controller
-
-import Tkinter as tk
-import wx
 
 root = tk.Tk()
 root.withdraw()
