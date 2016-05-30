@@ -2,7 +2,7 @@
 class Model:
 
     # Constructor
-    def __init__(self, n = 0):
+    def __init__(self, n=0):
         self.__value = n
         self.__callbacks = []
 
