@@ -1,12 +1,5 @@
 #!/usr/bin/python
-import Tkinter as tk
-import wx
 
-# Main
-root = tk.Tk()
-root.withdraw()
-app = Controller(root)
-root.mainloop()
 
 class View(tk.TopLevel):
 
