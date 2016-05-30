@@ -1,4 +1,10 @@
 #!/usr/bin/python
+import Tkinter as tk
+from model import Model
+
+from view import View
+
+
 class Controller:
 
     # Constructor

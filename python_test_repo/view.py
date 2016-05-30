@@ -7,7 +7,7 @@ class View(tk.Toplevel):
 
     # Constructor
     def __init__(self, master):
-        tk.TopLevel__init__(self, master)
+        tk.Toplevel.__init__(self, master)
         self.protocol('WM_DELETE_WINDOW', self.master.destroy)
 
         # Label number

@@ -17,7 +17,7 @@ class Model:
                 del self.__callbacks[i]
                 ++ i
 
-    def do_callbacks(self):
+    def __do_callbacks(self):
         for f in self.__callbacks:
             f(self.__value)
 
