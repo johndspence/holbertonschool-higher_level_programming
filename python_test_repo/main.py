@@ -8,5 +8,5 @@ from view import View
 
 root = tk.Tk()
 root.withdraw()
-root.mainloop()
 app = Controller(root)
+root.mainloop()

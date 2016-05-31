@@ -3,12 +3,9 @@
 from model import Model
 from view import View
 
-
 class Controller:
-
     # Constructor
     def __init__(self, root):
-
         # Retrieve my model (or create)
         self.my_number = Model()
         self.my_number.add_callback(self.number_change)

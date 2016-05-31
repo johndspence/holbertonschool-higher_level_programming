@@ -2,7 +2,6 @@
 
 import Tkinter as tk
 
-
 class View(tk.Toplevel):
 
     # Constructor
