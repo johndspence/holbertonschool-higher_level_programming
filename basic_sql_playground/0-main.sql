@@ -1,2 +1,2 @@
-/* Returns full schema of currently open sqlite database */
+/* Returns schema of currently open sqlite database */
 .schema

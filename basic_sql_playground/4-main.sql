@@ -2,9 +2,9 @@ PRAGMA foreign_keys = ON;
 
 /* Nested Select Statements */
 INSERT INTO EyesColor(person_id, color)VALUES((SELECT id FROM Person where
-	first_name='Jon'and last_name='Snow'),'brown');
+	first_name='Jon'and last_name='Snow'),'Brown');
 INSERT INTO EyesColor(person_id, color)VALUES((SELECT id FROM Person where
-	first_name='Arya'and last_name='Stark'),'green');
+	first_name='Arya'and last_name='Stark'),'Green');
 
 /* Table Creation */
 CREATE TABLE TVShow (
