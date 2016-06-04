@@ -9,6 +9,5 @@ print c_json_string
 
 doc = Document()
 c_xml = c.to_xml_node(doc)
-print (c_xml.__class__.__name__)
 doc.appendChild(c_xml)
 print doc.toxml(encoding='utf-8')

@@ -42,8 +42,8 @@ class Car():
 	def set_nb_doors(self, number):
 		self.__nb_doors = number
 	def to_json_string(self):
-		return str([{"nb_doors":self.__nb_doors, "brand": self.__brand, \
-					"name": self.__name}])
+		return str({"nb_doors":self.__nb_doors, "brand": self.__brand, \
+					"name": self.__name})
 	''' Method to create xml_node using the Document() class from
 		from xml.dom.minidom import Document'''
 	def to_xml_node(self, doc):
@@ -53,7 +53,6 @@ class Car():
 		name = doc.createElement('name')
 		car.appendChild(name)
 		cdata = doc.createCDATASection(self.__name)
-		#namec = doc.createElement('![CDATA[' + str(self.__name) + ']')
 		name.appendChild(cdata)
 		brand = doc.createElement('brand')
 		brand_title = doc.createTextNode(self.__brand)
