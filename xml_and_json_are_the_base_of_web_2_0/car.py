@@ -1,40 +1,62 @@
+import json
 
 class Car():
-	def __init__(self, *args, **kwargs)
+	''' Constructor for car using multiple arguments'''
+	def __init__(self, *args, **kwargs):
 		if len(args) > 0 and isinstance(args[0], dict):
 			hash = args[0]
+			name = hash.get('name')
+			brand = hash.get('brand')
+			nb_doors = hash.get('nb_doors')
+		else:
+			name = kwargs.get('name')
+			brand = kwargs.get('brand')
+			nb_doors = kwargs.get('nb_doors')
 
-			name = hash.get
+		'''Error checking'''
+		if name == None or not isinstance(name, str):
+			raise Exception("name is not a string")
+		if brand == None or not isinstance(brand, str):
+			raise Exception("brand is not a string")
+		if nb_doors < 1 or not isinstance(nb_doors, int):
+			raise Exception("nb_doors is not > 0")
 
-		if name == None or Name is not string
+		'''Setters'''
+		self.__name = name
+		self.__brand = brand
+		self.__nb_doors = nb_doors
 
-'''
-Private attributes:
-
-name (string)
-brand (string)
-nb_doors (integer)
-Public method:
-
-Constructor: __init__(self, *args, **kwargs)
-name is empty or not a string = Exception("name is not a string")
-brand is empty or not a string = Exception("brand is not a string")
-nb_doors is an integer or <= 0 = Exception("nb_doors is not > 0")
-Getter get_name(self)
-Getter get_brand(self)
-Getter get_nb_doors(self)
-to_hash() to return a dictionary data structure who describes the car
-__str__(self) to return a string with all information: ":name :brand (:nb_doors)"
-guillaume@production-503e7013:$ cat 2-main.py
-from car import Car
-
-c = Car(name="Rogue", brand="Nissan", nb_doors=5)
-print c
-print c.get_brand()
-print c.to_hash()
-
-guillaume@production-503e7013:$ python 2-main.py
-Rogue Nissan (5)
-Rogue
-{'nb_doors': 5, 'brand': 'Nissan', 'name': 'Rogue'}
-'''
+	'''Public Methods'''
+	def get_name(self):
+		return self.__name
+	def get_brand(self):
+		return self.__brand
+	def get_nb_doors(self):
+		return self.__nb_doors
+	def to_hash(self):
+		return {'name':self.__name, 'brand':self.__brand,
+				'nb_doors':self.__nb_doors}
+	def __str__(self):
+		return self.__name + " " + self.__brand + " " \
+				+ "(" + str(self.__nb_doors) + ")"
+	def set_nb_doors(self, number):
+		self.__nb_doors = number
+	def to_json_string(self):
+		return str([{"nb_doors":self.__nb_doors, "brand": self.__brand, \
+					"name": self.__name}])
+	''' Method to create xml_node using the Document() class from
+		from xml.dom.minidom import Document'''
+	def to_xml_node(self, doc):
+		car = doc.createElement('car')
+		doc.appendChild(car)
+		car.setAttribute('nb_doors', str(self.__nb_doors))
+		name = doc.createElement('name')
+		car.appendChild(name)
+		cdata = doc.createCDATASection(self.__name)
+		#namec = doc.createElement('![CDATA[' + str(self.__name) + ']')
+		name.appendChild(cdata)
+		brand = doc.createElement('brand')
+		brand_title = doc.createTextNode(self.__brand)
+		brand.appendChild(brand_title)
+		car.appendChild(brand)
+		return car
