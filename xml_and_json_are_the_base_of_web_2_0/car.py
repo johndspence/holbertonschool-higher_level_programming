@@ -13,6 +13,14 @@ class Car():
 			brand = kwargs.get('brand')
 			nb_doors = kwargs.get('nb_doors')
 
+		''' Cast unicode to string or int if necessary '''
+		if type(name) is unicode:
+			name = str(name)
+		if type(brand) is unicode:
+			brand = str(brand)
+		if type(nb_doors) is unicode:
+			nb_doors = int(nb_doors)
+
 		'''Error checking'''
 		if name == None or not isinstance(name, str):
 			raise Exception("name is not a string")
@@ -48,7 +56,7 @@ class Car():
 		from xml.dom.minidom import Document'''
 	def to_xml_node(self, doc):
 		car = doc.createElement('car')
-		doc.appendChild(car)
+		
 		car.setAttribute('nb_doors', str(self.__nb_doors))
 		name = doc.createElement('name')
 		car.appendChild(name)
