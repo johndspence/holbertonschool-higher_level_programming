@@ -73,6 +73,6 @@ def insert():
 
 def delete():
 	if id
-		delete id
+		Student.delete_instance id
 		print "Delete: <object to delete>"
 	else print "Nothing to delete"
