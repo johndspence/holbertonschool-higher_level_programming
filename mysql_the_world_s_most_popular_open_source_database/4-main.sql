@@ -1,3 +1,4 @@
+# Queries below as specified in project 169
 \! echo "\nList of all TVShows by all Genres ordered by genre name (A-Z)? (if a genre has 0 TVShow, please display NULL)"
 SELECT Genre.name AS "Genre name",TVShow.name AS "TVShow name"
 FROM Genre LEFT JOIN TVShowGenre ON Genre.id = TVShowGenre.genre_id

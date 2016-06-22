@@ -1,3 +1,4 @@
+# Queries below as specified in project 169
 \! echo "\nNumber of season by TVShow ordered by name (A-Z)?"
 SELECT TVShow.name as name, count(Season.id) as nb_seasons
 FROM TVShow JOIN Season ON TVShow.id = Season.tvshow_id

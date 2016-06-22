@@ -1,3 +1,4 @@
+# Queries below as specified in project 169
 \! echo "\nNumber of seasons by tvshow_id?"
 SELECT Season.tvshow_id, count(id)
 FROM Season

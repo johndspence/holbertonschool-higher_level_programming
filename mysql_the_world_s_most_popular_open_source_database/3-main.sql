@@ -1,3 +1,4 @@
+# Queries below as specified in project 169
 \! echo "\nList of TVShows ordered by name (A-Z) with more than or equal 4 seasons?"
 SELECT TVShow.name
 FROM TVShow JOIN Season on TVShow.id = Season.tvshow_id

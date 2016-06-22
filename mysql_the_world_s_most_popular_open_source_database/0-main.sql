@@ -1,3 +1,4 @@
+# Queries below as specified in project 169
 \! echo "\nList of all tables?"
 show tables;
 
